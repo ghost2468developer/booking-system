@@ -1,56 +1,56 @@
-"use client";
+"use client"
 
-import { useState } from "react";
+import { useState } from "react"
 import {
   approveBookingAction,
   rejectBookingAction,
   updateBookingStatusAction,
-  deleteBookingAction,
-} from "@/lib/actions/bookings";
-import { Loader2, Trash2, Check, X, Play, CheckCircle } from "lucide-react";
+  deleteBookingAction
+} from "@/lib/actions/bookings"
+import { Loader2, Trash2, Check, X, Play, CheckCircle } from "lucide-react"
 
 export default function BookingActions({
   bookingId,
-  currentStatus,
+  currentStatus
 }: {
-  bookingId: string;
-  currentStatus: string;
+  bookingId: string
+  currentStatus: string
 }) {
-  const [loading, setLoading] = useState<string | null>(null);
-  const [showRejectNotes, setShowRejectNotes] = useState(false);
-  const [adminNotes, setAdminNotes] = useState("");
-  const [confirmDelete, setConfirmDelete] = useState(false);
+  const [loading, setLoading] = useState<string | null>(null)
+  const [showRejectNotes, setShowRejectNotes] = useState(false)
+  const [adminNotes, setAdminNotes] = useState("")
+  const [confirmDelete, setConfirmDelete] = useState(false)
 
   const handleApprove = async () => {
-    setLoading("approve");
-    await approveBookingAction(bookingId);
-    setLoading(null);
-  };
+    setLoading("approve")
+    await approveBookingAction(bookingId)
+    setLoading(null)
+  }
 
   const handleReject = async () => {
-    setLoading("reject");
-    await rejectBookingAction(bookingId, adminNotes);
-    setLoading(null);
-    setShowRejectNotes(false);
-  };
+    setLoading("reject")
+    await rejectBookingAction(bookingId, adminNotes)
+    setLoading(null)
+    setShowRejectNotes(false)
+  }
 
   const handleStartWork = async () => {
-    setLoading("in_progress");
-    await updateBookingStatusAction(bookingId, "in_progress");
-    setLoading(null);
-  };
+    setLoading("in_progress")
+    await updateBookingStatusAction(bookingId, "in_progress")
+    setLoading(null)
+  }
 
   const handleComplete = async () => {
-    setLoading("completed");
-    await updateBookingStatusAction(bookingId, "completed");
-    setLoading(null);
-  };
+    setLoading("completed")
+    await updateBookingStatusAction(bookingId, "completed")
+    setLoading(null)
+  }
 
   const handleDelete = async () => {
-    setLoading("delete");
-    await deleteBookingAction(bookingId);
-    setLoading(null);
-  };
+    setLoading("delete")
+    await deleteBookingAction(bookingId)
+    setLoading(null)
+  }
 
   // Pending → Admin decides: Approve or Reject
   if (currentStatus === "pending") {
@@ -82,7 +82,7 @@ export default function BookingActions({
             </button>
           </div>
         </div>
-      );
+      )
     }
 
     return (
@@ -104,7 +104,7 @@ export default function BookingActions({
           Reject
         </button>
       </div>
-    );
+    )
   }
 
   // Approved → Admin can start work
@@ -120,7 +120,7 @@ export default function BookingActions({
           Start Work
         </button>
       </div>
-    );
+    )
   }
 
   // In Progress → Admin can mark complete
@@ -136,7 +136,7 @@ export default function BookingActions({
           Mark Complete
         </button>
       </div>
-    );
+    )
   }
 
   // Completed / Rejected / Cancelled → Admin can delete
@@ -170,8 +170,7 @@ export default function BookingActions({
           </button>
         )}
       </div>
-    );
+    )
   }
-
-  return null;
+  return null
 }
