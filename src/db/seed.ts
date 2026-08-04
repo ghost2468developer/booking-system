@@ -93,18 +93,18 @@ async function seed() {
 
   // Create services
   const serviceData = [
-    { name: "Oil Change", description: "Full synthetic oil change with filter replacement", price: 49.99, durationMinutes: 30, category: "Maintenance" },
-    { name: "Brake Pad Replacement", description: "Front or rear brake pad replacement with inspection", price: 189.99, durationMinutes: 90, category: "Brakes" },
-    { name: "Tire Rotation", description: "Rotate all four tires and check pressure", price: 29.99, durationMinutes: 30, category: "Tires" },
-    { name: "Engine Diagnostic", description: "Full computer diagnostic scan with report", price: 89.99, durationMinutes: 60, category: "Diagnostics" },
-    { name: "AC Recharge", description: "Recharge AC system with refrigerant and leak check", price: 129.99, durationMinutes: 45, category: "Climate" },
-    { name: "Battery Replacement", description: "Replace car battery with load test", price: 149.99, durationMinutes: 30, category: "Electrical" },
-    { name: "Transmission Fluid Change", description: "Drain and refill transmission fluid", price: 179.99, durationMinutes: 60, category: "Maintenance" },
-    { name: "Wheel Alignment", description: "Four-wheel alignment with printout", price: 99.99, durationMinutes: 60, category: "Tires" },
-    { name: "Full Detail Wash", description: "Interior and exterior detail with wax", price: 199.99, durationMinutes: 180, category: "Detailing" },
-    { name: "Spark Plug Replacement", description: "Replace all spark plugs and inspect ignition system", price: 119.99, durationMinutes: 60, category: "Engine" },
-    { name: "Coolant Flush", description: "Drain and refill engine coolant system", price: 79.99, durationMinutes: 45, category: "Maintenance" },
-    { name: "Headlight Restoration", description: "Polish and restore cloudy headlight lenses", price: 59.99, durationMinutes: 30, category: "Detailing" }
+    { name: "Oil Change", description: "Full synthetic oil change with filter replacement", price: 950, durationMinutes: 30, category: "Maintenance" },
+    { name: "Brake Pad Replacement", description: "Front or rear brake pad replacement with inspection", price: 2500, durationMinutes: 90, category: "Brakes" },
+    { name: "Tire Rotation", description: "Rotate all four tires and check pressure", price: 350, durationMinutes: 30, category: "Tires" },
+    { name: "Engine Diagnostic", description: "Full computer diagnostic scan with report", price: 850, durationMinutes: 60, category: "Diagnostics" },
+    { name: "AC Recharge", description: "Recharge AC system with refrigerant and leak check", price: 1800, durationMinutes: 45, category: "Climate" },
+    { name: "Battery Replacement", description: "Replace car battery with load test", price: 2400, durationMinutes: 30, category: "Electrical" },
+    { name: "Transmission Fluid Change", description: "Drain and refill transmission fluid", price: 2200, durationMinutes: 60, category: "Maintenance" },
+    { name: "Wheel Alignment", description: "Four-wheel alignment with printout", price: 650, durationMinutes: 60, category: "Tires" },
+    { name: "Full Detail Wash", description: "Interior and exterior detail with wax", price: 1800, durationMinutes: 180, category: "Detailing" },
+    { name: "Spark Plug Replacement", description: "Replace all spark plugs and inspect ignition system", price: 1600, durationMinutes: 60, category: "Engine" },
+    { name: "Coolant Flush", description: "Drain and refill engine coolant system", price: 1200, durationMinutes: 45, category: "Maintenance" },
+    { name: "Headlight Restoration", description: "Polish and restore cloudy headlight lenses", price: 650, durationMinutes: 30, category: "Detailing" }
   ]
 
   const createdServices: Array<{ id: string; price: unknown }> = []
