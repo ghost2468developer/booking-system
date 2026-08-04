@@ -98,7 +98,7 @@ export default async function AdminDashboard() {
             </div>
             <div>
               <p className="text-xs text-slate-500">Revenue</p>
-              <p className="text-xl font-bold text-slate-800">${revenue.toFixed(0)}</p>
+              <p className="text-xl font-bold text-slate-800">R{revenue.toFixed(0)}</p>
             </div>
           </div>
         </div>
@@ -161,7 +161,7 @@ export default async function AdminDashboard() {
                     <StatusBadge status={b.status} />
                   </td>
                   <td className="px-6 py-4 text-right font-semibold text-slate-800">
-                    {b.totalPrice ? `$${Number(b.totalPrice).toFixed(2)}` : "—"}
+                    {b.totalPrice ? `R${Number(b.totalPrice).toFixed(2)}` : "—"}
                   </td>
                 </tr>
               ))}

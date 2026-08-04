@@ -128,11 +128,11 @@ export default async function AdminBookingsPage({
                         day: "numeric",
                         year: "numeric",
                         hour: "numeric",
-                        minute: "2-digit",
+                        minute: "2-digit"
                       })}
                     </p>
                     <p className="text-lg font-bold text-slate-800 mt-1">
-                      {b.totalPrice ? `$${Number(b.totalPrice).toFixed(2)}` : "—"}
+                      {b.totalPrice ? `R${Number(b.totalPrice).toFixed(2)}` : "—"}
                     </p>
                   </div>
                 </div>
@@ -151,7 +151,7 @@ export default async function AdminBookingsPage({
                       key={i}
                       className="inline-flex items-center px-2.5 py-1 rounded-lg bg-slate-100 text-xs font-medium text-slate-700"
                     >
-                      {bs.service.name} · ${Number(bs.priceAtBooking).toFixed(2)}
+                      {bs.service.name} · R{Number(bs.priceAtBooking).toFixed(2)}
                     </span>
                   ))}
                 </div>

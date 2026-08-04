@@ -9,7 +9,7 @@ async function seed() {
 
   console.log("🌱 Seeding database...\n")
 
-  // ─── 1. Always ensure default accounts exist
+  // 1. Always ensure default accounts exist
   const adminHash = await bcryptjs.hash("admin123", 10)
   const userHash = await bcryptjs.hash("user123", 10)
 

@@ -159,7 +159,7 @@ export default function ServiceManager({ services }: { services: Service[] }) {
                             <div className="flex items-center gap-6">
                               <div className="text-right hidden sm:block">
                                 <p className="font-semibold text-slate-800">
-                                  ${parseFloat(service.price).toFixed(2)}
+                                  R{parseFloat(service.price).toFixed(2)}
                                 </p>
                                 <p className="text-xs text-slate-400">
                                   {service.durationMinutes} min
