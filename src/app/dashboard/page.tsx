@@ -1,29 +1,29 @@
-import { prisma } from "@/db";
-import { getCurrentUser } from "@/lib/auth";
-import { redirect } from "next/navigation";
-import Link from "next/link";
-import StatusBadge from "@/components/ui/StatusBadge";
-import { CalendarCheck, Car, Clock, Plus, AlertCircle } from "lucide-react";
+import { prisma } from "@/db"
+import { getCurrentUser } from "@/lib/auth"
+import { redirect } from "next/navigation"
+import Link from "next/link"
+import StatusBadge from "@/components/ui/StatusBadge"
+import { CalendarCheck, Car, Clock, Plus, AlertCircle } from "lucide-react"
 
 export default async function DashboardPage() {
-  const user = await getCurrentUser();
-  if (!user) redirect("/login");
+  const user = await getCurrentUser()
+  if (!user) redirect("/login")
 
   const userVehicles = await prisma.vehicle.findMany({
-    where: { userId: user.id },
-  });
+    where: { userId: user.id }
+  })
 
   const userBookings = await prisma.booking.findMany({
     where: { userId: user.id },
     include: { vehicle: true },
-    orderBy: { scheduledDate: "desc" },
-  });
+    orderBy: { scheduledDate: "desc" }
+  })
 
-  const pendingBookings = userBookings.filter((b) => b.status === "pending");
+  const pendingBookings = userBookings.filter((b) => b.status === "pending")
   const activeBookings = userBookings.filter(
     (b) => b.status === "approved" || b.status === "in_progress"
-  );
-  const completedBookings = userBookings.filter((b) => b.status === "completed");
+  )
+  const completedBookings = userBookings.filter((b) => b.status === "completed")
 
   const upcomingBookings = userBookings
     .filter(
@@ -32,7 +32,7 @@ export default async function DashboardPage() {
         b.status !== "cancelled" &&
         b.status !== "rejected"
     )
-    .slice(0, 5);
+    .slice(0, 5)
 
   return (
     <div className="p-6 lg:p-8 max-w-7xl mx-auto">
@@ -162,5 +162,5 @@ export default async function DashboardPage() {
         <Plus className="w-6 h-6" />
       </Link>
     </div>
-  );
+  )
 }

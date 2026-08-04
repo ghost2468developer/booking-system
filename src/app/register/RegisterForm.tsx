@@ -1,16 +1,16 @@
-"use client";
+"use client"
 
-import { registerAction } from "@/lib/actions/auth";
-import { useActionState } from "react";
-import { Mail, Lock, User, Phone, Loader2 } from "lucide-react";
+import { registerAction } from "@/lib/actions/auth"
+import { useActionState } from "react"
+import { Mail, Lock, User, Phone, Loader2 } from "lucide-react"
 
 export default function RegisterForm() {
   const [state, formAction, isPending] = useActionState(
     async (_prev: { error?: string } | null, formData: FormData) => {
-      return await registerAction(formData);
+      return await registerAction(formData)
     },
     null
-  );
+  )
 
   return (
     <form action={formAction} className="space-y-4">
@@ -98,5 +98,5 @@ export default function RegisterForm() {
         )}
       </button>
     </form>
-  );
+  )
 }

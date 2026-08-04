@@ -1,50 +1,50 @@
-"use client";
+"use client"
 
-import { useState } from "react";
+import { useState } from "react"
 import {
   createVehicleAction,
   updateVehicleAction,
-  deleteVehicleAction,
-} from "@/lib/actions/vehicles";
+  deleteVehicleAction
+} from "@/lib/actions/vehicles"
 interface Vehicle {
-  id: string;
-  userId: string;
-  make: string;
-  model: string;
-  year: number;
-  color: string | null;
-  licensePlate: string | null;
-  vin: string | null;
-  createdAt: string;
+  id: string
+  userId: string
+  make: string
+  model: string
+  year: number
+  color: string | null
+  licensePlate: string | null
+  vin: string | null
+  createdAt: string
 }
-import { Car, Plus, Edit2, Trash2, X, Loader2 } from "lucide-react";
+import { Car, Plus, Edit2, Trash2, X, Loader2 } from "lucide-react"
 
 export default function VehicleList({ vehicles }: { vehicles: Vehicle[] }) {
-  const [showForm, setShowForm] = useState(false);
-  const [editingId, setEditingId] = useState<string | null>(null);
-  const [deletingId, setDeletingId] = useState<string | null>(null);
+  const [showForm, setShowForm] = useState(false)
+  const [editingId, setEditingId] = useState<string | null>(null)
+  const [deletingId, setDeletingId] = useState<string | null>(null)
   const [loading, setLoading] = useState(false);
 
   const handleCreate = async (formData: FormData) => {
-    setLoading(true);
-    await createVehicleAction(formData);
-    setShowForm(false);
-    setLoading(false);
-  };
+    setLoading(true)
+    await createVehicleAction(formData)
+    setShowForm(false)
+    setLoading(false)
+  }
 
   const handleUpdate = async (formData: FormData) => {
-    setLoading(true);
-    await updateVehicleAction(formData);
-    setEditingId(null);
-    setLoading(false);
-  };
+    setLoading(true)
+    await updateVehicleAction(formData)
+    setEditingId(null)
+    setLoading(false)
+  }
 
   const handleDelete = async (id: string) => {
-    setLoading(true);
-    await deleteVehicleAction(id);
-    setDeletingId(null);
-    setLoading(false);
-  };
+    setLoading(true)
+    await deleteVehicleAction(id)
+    setDeletingId(null)
+    setLoading(false)
+  }
 
   return (
     <>
@@ -254,5 +254,5 @@ export default function VehicleList({ vehicles }: { vehicles: Vehicle[] }) {
         </div>
       )}
     </>
-  );
+  )
 }

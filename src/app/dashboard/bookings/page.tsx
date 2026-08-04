@@ -1,26 +1,26 @@
-import { prisma } from "@/db";
-import { getCurrentUser } from "@/lib/auth";
-import { redirect } from "next/navigation";
-import Link from "next/link";
-import StatusBadge from "@/components/ui/StatusBadge";
-import EmptyState from "@/components/ui/EmptyState";
-import { CalendarCheck, Car, Plus, MessageSquare } from "lucide-react";
-import CancelBookingButton from "./CancelBookingButton";
+import { prisma } from "@/db"
+import { getCurrentUser } from "@/lib/auth"
+import { redirect } from "next/navigation"
+import Link from "next/link"
+import StatusBadge from "@/components/ui/StatusBadge"
+import EmptyState from "@/components/ui/EmptyState"
+import { CalendarCheck, Car, Plus, MessageSquare } from "lucide-react"
+import CancelBookingButton from "./CancelBookingButton"
 
 export default async function BookingsPage() {
-  const user = await getCurrentUser();
-  if (!user) redirect("/login");
+  const user = await getCurrentUser()
+  if (!user) redirect("/login")
 
   const userBookings = await prisma.booking.findMany({
     where: { userId: user.id },
     include: {
       vehicle: true,
       bookingServices: {
-        include: { service: true },
-      },
+        include: { service: true }
+      }
     },
-    orderBy: { scheduledDate: "desc" },
-  });
+    orderBy: { scheduledDate: "desc" }
+  })
 
   return (
     <div className="p-6 lg:p-8 max-w-7xl mx-auto">
@@ -158,5 +158,5 @@ export default async function BookingsPage() {
         </div>
       )}
     </div>
-  );
+  )
 }
