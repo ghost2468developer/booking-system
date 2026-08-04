@@ -86,7 +86,7 @@ export default async function BookingsPage() {
                     <StatusBadge status={b.status} />
                     {b.totalPrice && (
                       <span className="text-lg font-bold text-slate-800">
-                        ${Number(b.totalPrice).toFixed(2)}
+                        R{Number(b.totalPrice).toFixed(2)}
                       </span>
                     )}
                   </div>
@@ -137,7 +137,7 @@ export default async function BookingsPage() {
                       key={i}
                       className="inline-flex items-center px-2.5 py-1 rounded-lg bg-slate-100 text-xs font-medium text-slate-700"
                     >
-                      {bs.service.name} · ${Number(bs.priceAtBooking).toFixed(2)}
+                      {bs.service.name} · R{Number(bs.priceAtBooking).toFixed(2)}
                     </span>
                   ))}
                 </div>
