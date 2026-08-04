@@ -17,5 +17,5 @@ export default async function DashboardLayout({ children }: { children: ReactNod
         </main>
       </div>
     </div>
-  );
+  )
 }
