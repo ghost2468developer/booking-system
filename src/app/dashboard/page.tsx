@@ -145,7 +145,7 @@ export default async function DashboardPage() {
                 <StatusBadge status={b.status} />
                 {b.totalPrice && (
                   <span className="text-sm font-semibold text-slate-700 hidden sm:block">
-                    ${Number(b.totalPrice).toFixed(2)}
+                    R{Number(b.totalPrice).toFixed(2)}
                   </span>
                 )}
               </div>
