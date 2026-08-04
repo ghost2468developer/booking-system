@@ -1,21 +1,21 @@
-import { prisma } from "@/db";
-import { getCurrentUser } from "@/lib/auth";
-import { redirect } from "next/navigation";
-import StatusBadge from "@/components/ui/StatusBadge";
-import BookingActions from "./BookingActions";
-import { CalendarCheck, MessageSquare } from "lucide-react";
-import Link from "next/link";
+import { prisma } from "@/db"
+import { getCurrentUser } from "@/lib/auth"
+import { redirect } from "next/navigation"
+import StatusBadge from "@/components/ui/StatusBadge"
+import BookingActions from "./BookingActions"
+import { CalendarCheck, MessageSquare } from "lucide-react"
+import Link from "next/link"
 
 export default async function AdminBookingsPage({
-  searchParams,
+  searchParams
 }: {
-  searchParams: Promise<{ filter?: string }>;
+  searchParams: Promise<{ filter?: string }>
 }) {
-  const user = await getCurrentUser();
-  if (!user || user.role !== "admin") redirect("/login");
+  const user = await getCurrentUser()
+  if (!user || user.role !== "admin") redirect("/login")
 
-  const params = await searchParams;
-  const filter = params.filter || "all";
+  const params = await searchParams
+  const filter = params.filter || "all"
 
   const statusFilter =
     filter === "pending" ? { status: "pending" as const }
@@ -23,7 +23,7 @@ export default async function AdminBookingsPage({
     : filter === "in_progress" ? { status: "in_progress" as const }
     : filter === "completed" ? { status: "completed" as const }
     : filter === "rejected" ? { status: "rejected" as const }
-    : {};
+    : {}
 
   const allBookings = await prisma.booking.findMany({
     where: statusFilter,
@@ -31,11 +31,11 @@ export default async function AdminBookingsPage({
       user: { select: { name: true, email: true, phone: true } },
       vehicle: { select: { make: true, model: true, year: true, licensePlate: true } },
       bookingServices: {
-        include: { service: { select: { name: true } } },
-      },
+        include: { service: { select: { name: true } } }
+      }
     },
-    orderBy: { createdAt: "desc" },
-  });
+    orderBy: { createdAt: "desc" }
+  })
 
   const counts = {
     all: await prisma.booking.count(),
@@ -43,8 +43,8 @@ export default async function AdminBookingsPage({
     approved: await prisma.booking.count({ where: { status: "approved" } }),
     in_progress: await prisma.booking.count({ where: { status: "in_progress" } }),
     completed: await prisma.booking.count({ where: { status: "completed" } }),
-    rejected: await prisma.booking.count({ where: { status: "rejected" } }),
-  };
+    rejected: await prisma.booking.count({ where: { status: "rejected" } })
+  }
 
   const tabs = [
     { key: "all", label: "All", count: counts.all },
@@ -52,8 +52,8 @@ export default async function AdminBookingsPage({
     { key: "approved", label: "Approved", count: counts.approved },
     { key: "in_progress", label: "In Progress", count: counts.in_progress },
     { key: "completed", label: "Completed", count: counts.completed },
-    { key: "rejected", label: "Rejected", count: counts.rejected },
-  ];
+    { key: "rejected", label: "Rejected", count: counts.rejected }
+  ]
 
   return (
     <div className="p-6 lg:p-8 max-w-7xl mx-auto">
@@ -180,5 +180,5 @@ export default async function AdminBookingsPage({
         </div>
       )}
     </div>
-  );
+  )
 }
