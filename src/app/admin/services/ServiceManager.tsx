@@ -1,56 +1,56 @@
-"use client";
+"use client"
 
-import { useState } from "react";
+import { useState } from "react"
 import {
   createServiceAction,
   updateServiceAction,
   deleteServiceAction,
-  toggleServiceAction,
-} from "@/lib/actions/services";
+  toggleServiceAction
+} from "@/lib/actions/services"
 interface Service {
-  id: string;
-  name: string;
-  description: string | null;
-  price: string;
-  durationMinutes: number;
-  category: string;
-  isActive: boolean;
-  createdAt: string;
+  id: string
+  name: string
+  description: string | null
+  price: string
+  durationMinutes: number
+  category: string
+  isActive: boolean
+  createdAt: string
 }
-import { Plus, Edit2, Trash2, X, Loader2, Wrench, ToggleLeft, ToggleRight } from "lucide-react";
+import { Plus, Edit2, Trash2, X, Loader2, Wrench, ToggleLeft, ToggleRight } from "lucide-react"
 
 export default function ServiceManager({ services }: { services: Service[] }) {
-  const [showForm, setShowForm] = useState(false);
-  const [editingId, setEditingId] = useState<string | null>(null);
-  const [deletingId, setDeletingId] = useState<string | null>(null);
-  const [loading, setLoading] = useState(false);
+  const [showForm, setShowForm] = useState(false)
+  const [editingId, setEditingId] = useState<string | null>(null)
+  const [deletingId, setDeletingId] = useState<string | null>(null)
+  const [loading, setLoading] = useState(false)
 
-  const categories = [...new Set(services.map((s) => s.category))];
+  const categories = [...new Set(services.map((s) => s.category))]
 
   const handleCreate = async (formData: FormData) => {
-    setLoading(true);
-    await createServiceAction(formData);
-    setShowForm(false);
-    setLoading(false);
-  };
+    setLoading(true)
+    await createServiceAction(formData)
+    setShowForm(false)
+    setLoading(false)
+  }
 
   const handleUpdate = async (formData: FormData) => {
-    setLoading(true);
-    await updateServiceAction(formData);
-    setEditingId(null);
-    setLoading(false);
-  };
+    setLoading(true)
+    await updateServiceAction(formData)
+    setEditingId(null)
+    setLoading(false)
+  }
 
   const handleDelete = async (id: string) => {
-    setLoading(true);
-    await deleteServiceAction(id);
-    setDeletingId(null);
-    setLoading(false);
-  };
+    setLoading(true)
+    await deleteServiceAction(id)
+    setDeletingId(null)
+    setLoading(false)
+  }
 
   const handleToggle = async (id: string, currentActive: boolean) => {
-    await toggleServiceAction(id, !currentActive);
-  };
+    await toggleServiceAction(id, !currentActive)
+  }
 
   return (
     <>
@@ -219,5 +219,5 @@ export default function ServiceManager({ services }: { services: Service[] }) {
         </div>
       )}
     </>
-  );
+  )
 }
