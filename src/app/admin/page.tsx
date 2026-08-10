@@ -1,34 +1,34 @@
-import { prisma } from "@/db";
-import { getCurrentUser } from "@/lib/auth";
-import { redirect } from "next/navigation";
-import StatusBadge from "@/components/ui/StatusBadge";
-import Link from "next/link";
-import { CalendarCheck, Users, DollarSign, Wrench, ChevronRight, AlertCircle, Clock } from "lucide-react";
+import { prisma } from "@/db"
+import { getCurrentUser } from "@/lib/auth"
+import { redirect } from "next/navigation"
+import StatusBadge from "@/components/ui/StatusBadge"
+import Link from "next/link"
+import { CalendarCheck, Users, DollarSign, Wrench, ChevronRight, AlertCircle, Clock } from "lucide-react"
 
 export default async function AdminDashboard() {
-  const user = await getCurrentUser();
-  if (!user || user.role !== "admin") redirect("/login");
+  const user = await getCurrentUser()
+  if (!user || user.role !== "admin") redirect("/login")
 
-  const totalBookings = await prisma.booking.count();
-  const totalUsers = await prisma.user.count({ where: { role: "user" } });
-  const totalServices = await prisma.service.count();
-  const pendingCount = await prisma.booking.count({ where: { status: "pending" } });
-  const inProgressCount = await prisma.booking.count({ where: { status: "in_progress" } });
+  const totalBookings = await prisma.booking.count()
+  const totalUsers = await prisma.user.count({ where: { role: "user" } })
+  const totalServices = await prisma.service.count()
+  const pendingCount = await prisma.booking.count({ where: { status: "pending" } })
+  const inProgressCount = await prisma.booking.count({ where: { status: "in_progress" } })
 
   const completedBookings = await prisma.booking.findMany({
     where: { status: "completed" },
-    select: { totalPrice: true },
-  });
-  const revenue = completedBookings.reduce((sum, b) => sum + Number(b.totalPrice || 0), 0);
+    select: { totalPrice: true }
+  })
+  const revenue = completedBookings.reduce((sum, b) => sum + Number(b.totalPrice || 0), 0)
 
   const recentBookings = await prisma.booking.findMany({
     include: {
       user: { select: { name: true, email: true } },
-      vehicle: { select: { make: true, model: true } },
+      vehicle: { select: { make: true, model: true } }
     },
     orderBy: { createdAt: "desc" },
-    take: 8,
-  });
+    take: 8
+  })
 
   return (
     <div className="p-6 lg:p-8 max-w-7xl mx-auto">
@@ -98,7 +98,7 @@ export default async function AdminDashboard() {
             </div>
             <div>
               <p className="text-xs text-slate-500">Revenue</p>
-              <p className="text-xl font-bold text-slate-800">${revenue.toFixed(0)}</p>
+              <p className="text-xl font-bold text-slate-800">R{revenue.toFixed(0)}</p>
             </div>
           </div>
         </div>
@@ -161,7 +161,7 @@ export default async function AdminDashboard() {
                     <StatusBadge status={b.status} />
                   </td>
                   <td className="px-6 py-4 text-right font-semibold text-slate-800">
-                    {b.totalPrice ? `$${Number(b.totalPrice).toFixed(2)}` : "—"}
+                    {b.totalPrice ? `R${Number(b.totalPrice).toFixed(2)}` : "—"}
                   </td>
                 </tr>
               ))}
@@ -170,5 +170,5 @@ export default async function AdminDashboard() {
         </div>
       </div>
     </div>
-  );
+  )
 }

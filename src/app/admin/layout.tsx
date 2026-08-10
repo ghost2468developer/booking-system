@@ -1,12 +1,12 @@
-import { getCurrentUser } from "@/lib/auth";
-import { redirect } from "next/navigation";
-import Sidebar from "@/components/layout/Sidebar";
-import type { ReactNode } from "react";
+import { getCurrentUser } from "@/lib/auth"
+import { redirect } from "next/navigation"
+import Sidebar from "@/components/layout/Sidebar"
+import type { ReactNode } from "react"
 
 export default async function AdminLayout({ children }: { children: ReactNode }) {
-  const user = await getCurrentUser();
-  if (!user) redirect("/login");
-  if (user.role !== "admin") redirect("/dashboard");
+  const user = await getCurrentUser()
+  if (!user) redirect("/login")
+  if (user.role !== "admin") redirect("/dashboard")
 
   return (
     <div className="min-h-screen bg-slate-50">
@@ -17,5 +17,5 @@ export default async function AdminLayout({ children }: { children: ReactNode })
         </main>
       </div>
     </div>
-  );
+  )
 }

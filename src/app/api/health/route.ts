@@ -1,12 +1,12 @@
-import { prisma } from "@/db";
+import { prisma } from "@/db"
 
-export const dynamic = "force-dynamic";
+export const dynamic = "force-dynamic"
 
 export async function GET() {
   try {
-    await prisma.$queryRawUnsafe("SELECT 1");
-    return Response.json({ ok: true });
+    await prisma.$queryRawUnsafe("SELECT 1")
+    return Response.json({ ok: true })
   } catch {
-    return Response.json({ ok: false }, { status: 500 });
+    return Response.json({ ok: false }, { status: 500 })
   }
 }

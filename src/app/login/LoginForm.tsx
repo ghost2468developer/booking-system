@@ -1,16 +1,16 @@
-"use client";
+"use client"
 
-import { loginAction } from "@/lib/actions/auth";
-import { useActionState } from "react";
-import { Mail, Lock, Loader2 } from "lucide-react";
+import { loginAction } from "@/lib/actions/auth"
+import { useActionState } from "react"
+import { Mail, Lock, Loader2 } from "lucide-react"
 
 export default function LoginForm() {
   const [state, formAction, isPending] = useActionState(
     async (_prev: { error?: string } | null, formData: FormData) => {
-      return await loginAction(formData);
+      return await loginAction(formData)
     },
     null
-  );
+  )
 
   return (
     <form action={formAction} className="space-y-4">
@@ -66,5 +66,5 @@ export default function LoginForm() {
         )}
       </button>
     </form>
-  );
+  )
 }

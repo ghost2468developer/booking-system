@@ -1,19 +1,19 @@
-"use client";
+"use client"
 
-import { cancelBookingAction } from "@/lib/actions/bookings";
-import { useState } from "react";
-import { X, Loader2 } from "lucide-react";
+import { cancelBookingAction } from "@/lib/actions/bookings"
+import { useState } from "react"
+import { X, Loader2 } from "lucide-react"
 
 export default function CancelBookingButton({ bookingId }: { bookingId: string }) {
-  const [loading, setLoading] = useState(false);
-  const [confirming, setConfirming] = useState(false);
+  const [loading, setLoading] = useState(false)
+  const [confirming, setConfirming] = useState(false)
 
   const handleCancel = async () => {
-    setLoading(true);
-    await cancelBookingAction(bookingId);
-    setLoading(false);
-    setConfirming(false);
-  };
+    setLoading(true)
+    await cancelBookingAction(bookingId)
+    setLoading(false)
+    setConfirming(false)
+  }
 
   if (confirming) {
     return (
@@ -34,7 +34,7 @@ export default function CancelBookingButton({ bookingId }: { bookingId: string }
           No, keep it
         </button>
       </div>
-    );
+    )
   }
 
   return (
@@ -45,5 +45,5 @@ export default function CancelBookingButton({ bookingId }: { bookingId: string }
       <X className="w-4 h-4" />
       Cancel Booking
     </button>
-  );
+  )
 }

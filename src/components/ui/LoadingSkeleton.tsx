@@ -5,7 +5,7 @@ export function CardSkeleton() {
       <div className="h-3 bg-slate-200 rounded w-1/2 mb-2" />
       <div className="h-3 bg-slate-200 rounded w-2/3" />
     </div>
-  );
+  )
 }
 
 export function TableSkeleton({ rows = 5 }: { rows?: number }) {
@@ -24,7 +24,7 @@ export function TableSkeleton({ rows = 5 }: { rows?: number }) {
         </div>
       ))}
     </div>
-  );
+  )
 }
 
 export function StatSkeleton() {
@@ -33,5 +33,5 @@ export function StatSkeleton() {
       <div className="h-3 bg-slate-200 rounded w-1/2 mb-3" />
       <div className="h-8 bg-slate-200 rounded w-1/3" />
     </div>
-  );
+  )
 }

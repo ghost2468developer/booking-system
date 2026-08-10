@@ -1,7 +1,7 @@
-"use client";
+"use client"
 
-import Link from "next/link";
-import { usePathname } from "next/navigation";
+import Link from "next/link"
+import { usePathname } from "next/navigation"
 import {
   LayoutDashboard,
   Car,
@@ -11,49 +11,49 @@ import {
   LogOut,
   Menu,
   X,
-  ChevronRight,
-} from "lucide-react";
-import { logoutAction } from "@/lib/actions/auth";
-import { useState } from "react";
+  ChevronRight
+} from "lucide-react"
+import { logoutAction } from "@/lib/actions/auth"
+import { useState } from "react"
 
 interface NavItem {
-  href: string;
-  label: string;
-  icon: React.ReactNode;
+  href: string
+  label: string
+  icon: React.ReactNode
 }
 
 export default function Sidebar({
   role,
-  userName,
+  userName
 }: {
-  role: "admin" | "user";
-  userName: string;
+  role: "admin" | "user"
+  userName: string
 }) {
-  const pathname = usePathname();
-  const [mobileOpen, setMobileOpen] = useState(false);
+  const pathname = usePathname()
+  const [mobileOpen, setMobileOpen] = useState(false)
 
   const adminNavItems: NavItem[] = [
     { href: "/admin", label: "Dashboard", icon: <LayoutDashboard className="w-5 h-5" /> },
     { href: "/admin/bookings", label: "Bookings", icon: <CalendarCheck className="w-5 h-5" /> },
     { href: "/admin/services", label: "Services", icon: <Wrench className="w-5 h-5" /> },
-    { href: "/admin/customers", label: "Customers", icon: <Users className="w-5 h-5" /> },
-  ];
+    { href: "/admin/customers", label: "Customers", icon: <Users className="w-5 h-5" /> }
+  ]
 
   const userNavItems: NavItem[] = [
     { href: "/dashboard", label: "Dashboard", icon: <LayoutDashboard className="w-5 h-5" /> },
     { href: "/dashboard/bookings", label: "My Bookings", icon: <CalendarCheck className="w-5 h-5" /> },
     { href: "/dashboard/vehicles", label: "My Vehicles", icon: <Car className="w-5 h-5" /> },
-    { href: "/dashboard/book", label: "Book Service", icon: <Wrench className="w-5 h-5" /> },
-  ];
+    { href: "/dashboard/book", label: "Book Service", icon: <Wrench className="w-5 h-5" /> }
+  ]
 
-  const navItems = role === "admin" ? adminNavItems : userNavItems;
+  const navItems = role === "admin" ? adminNavItems : userNavItems
 
   const isActive = (href: string) => {
     if (href === "/admin" || href === "/dashboard") {
-      return pathname === href;
+      return pathname === href
     }
-    return pathname.startsWith(href);
-  };
+    return pathname.startsWith(href)
+  }
 
   const sidebarContent = (
     <>
@@ -156,5 +156,5 @@ export default function Sidebar({
         {sidebarContent}
       </div>
     </>
-  );
+  )
 }

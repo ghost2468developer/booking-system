@@ -1,22 +1,22 @@
-import { prisma } from "@/db";
-import { getCurrentUser } from "@/lib/auth";
-import { redirect } from "next/navigation";
-import BookingForm from "./BookingForm";
-import Link from "next/link";
-import { Car, Plus } from "lucide-react";
+import { prisma } from "@/db"
+import { getCurrentUser } from "@/lib/auth"
+import { redirect } from "next/navigation"
+import BookingForm from "./BookingForm"
+import Link from "next/link"
+import { Car, Plus } from "lucide-react"
 
 export default async function BookPage() {
-  const user = await getCurrentUser();
-  if (!user) redirect("/login");
+  const user = await getCurrentUser()
+  if (!user) redirect("/login")
 
   const userVehicles = await prisma.vehicle.findMany({
-    where: { userId: user.id },
-  });
+    where: { userId: user.id }
+  })
 
   const activeServices = await prisma.service.findMany({
     where: { isActive: true },
-    orderBy: [{ category: "asc" }, { name: "asc" }],
-  });
+    orderBy: [{ category: "asc" }, { name: "asc" }]
+  })
 
   // Serialize Decimal to string for client component
   const serializedVehicles = userVehicles.map((v) => ({
@@ -24,8 +24,8 @@ export default async function BookPage() {
     make: v.make,
     model: v.model,
     year: v.year,
-    licensePlate: v.licensePlate,
-  }));
+    licensePlate: v.licensePlate
+  }))
 
   const serializedServices = activeServices.map((s) => ({
     id: s.id,
@@ -33,8 +33,8 @@ export default async function BookPage() {
     description: s.description,
     price: String(s.price),
     durationMinutes: s.durationMinutes,
-    category: s.category,
-  }));
+    category: s.category
+  }))
 
   if (userVehicles.length === 0) {
     return (
@@ -54,7 +54,7 @@ export default async function BookPage() {
           </Link>
         </div>
       </div>
-    );
+    )
   }
 
   return (
@@ -63,5 +63,5 @@ export default async function BookPage() {
       <p className="text-slate-500 mb-8">Select your vehicle, choose services, and pick a date</p>
       <BookingForm vehicles={serializedVehicles} services={serializedServices} />
     </div>
-  );
+  )
 }

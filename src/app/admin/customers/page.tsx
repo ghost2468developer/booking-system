@@ -1,23 +1,23 @@
-import { prisma } from "@/db";
-import { getCurrentUser } from "@/lib/auth";
-import { redirect } from "next/navigation";
-import { Users, Mail, Phone, Car, CalendarCheck } from "lucide-react";
+import { prisma } from "@/db"
+import { getCurrentUser } from "@/lib/auth"
+import { redirect } from "next/navigation"
+import { Users, Mail, Phone, Car, CalendarCheck } from "lucide-react"
 
 export default async function AdminCustomersPage() {
-  const user = await getCurrentUser();
-  if (!user || user.role !== "admin") redirect("/login");
+  const user = await getCurrentUser()
+  if (!user || user.role !== "admin") redirect("/login")
 
   const allUsers = await prisma.user.findMany({
     include: {
       _count: {
         select: {
           vehicles: true,
-          bookings: true,
-        },
-      },
+          bookings: true
+        }
+      }
     },
-    orderBy: { createdAt: "desc" },
-  });
+    orderBy: { createdAt: "desc" }
+  })
 
   return (
     <div className="p-6 lg:p-8 max-w-7xl mx-auto">
@@ -99,5 +99,5 @@ export default async function AdminCustomersPage() {
         </div>
       )}
     </div>
-  );
+  )
 }

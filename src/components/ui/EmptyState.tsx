@@ -1,15 +1,15 @@
-import { type ReactNode } from "react";
+import { type ReactNode } from "react"
 
 export default function EmptyState({
   icon,
   title,
   description,
-  action,
+  action
 }: {
-  icon: ReactNode;
-  title: string;
-  description: string;
-  action?: ReactNode;
+  icon: ReactNode
+  title: string
+  description: string
+  action?: ReactNode
 }) {
   return (
     <div className="flex flex-col items-center justify-center py-16 px-4">
@@ -18,5 +18,5 @@ export default function EmptyState({
       <p className="text-sm text-slate-500 mb-6 text-center max-w-sm">{description}</p>
       {action}
     </div>
-  );
+  )
 }

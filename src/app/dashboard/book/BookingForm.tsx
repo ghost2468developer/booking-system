@@ -25,50 +25,50 @@ export default function BookingForm({
   vehicles,
   services,
 }: {
-  vehicles: Vehicle[];
-  services: Service[];
+  vehicles: Vehicle[]
+  services: Service[]
 }) {
-  const router = useRouter();
-  const [selectedServices, setSelectedServices] = useState<string[]>([]);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState<string | null>(null);
-  const [success, setSuccess] = useState(false);
+  const router = useRouter()
+  const [selectedServices, setSelectedServices] = useState<string[]>([])
+  const [loading, setLoading] = useState(false)
+  const [error, setError] = useState<string | null>(null)
+  const [success, setSuccess] = useState(false)
 
   const toggleService = (id: string) => {
     setSelectedServices((prev) =>
       prev.includes(id) ? prev.filter((s) => s !== id) : [...prev, id]
-    );
-  };
+    )
+  }
 
   const totalPrice = services
     .filter((s) => selectedServices.includes(s.id))
-    .reduce((sum, s) => sum + parseFloat(s.price), 0);
+    .reduce((sum, s) => sum + parseFloat(s.price), 0)
 
   const totalDuration = services
     .filter((s) => selectedServices.includes(s.id))
-    .reduce((sum, s) => sum + s.durationMinutes, 0);
+    .reduce((sum, s) => sum + s.durationMinutes, 0)
 
-  const categories = [...new Set(services.map((s) => s.category))];
+  const categories = [...new Set(services.map((s) => s.category))]
 
   const handleSubmit = async (formData: FormData) => {
-    setLoading(true);
-    setError(null);
+    setLoading(true)
+    setError(null)
 
     selectedServices.forEach((id) => {
-      formData.append("serviceIds", id);
-    });
+      formData.append("serviceIds", id)
+    })
 
-    const result = await createBookingAction(formData);
+    const result = await createBookingAction(formData)
     if (result && "error" in result) {
-      setError(result.error ?? "An error occurred");
-      setLoading(false);
+      setError(result.error ?? "An error occurred")
+      setLoading(false)
     } else {
       setSuccess(true);
       setTimeout(() => {
-        router.push("/dashboard/bookings");
-      }, 1500);
+        router.push("/dashboard/bookings")
+      }, 1500)
     }
-  };
+  }
 
   if (success) {
     return (
@@ -79,7 +79,7 @@ export default function BookingForm({
         <h3 className="text-xl font-semibold text-slate-800 mb-2">Booking Confirmed!</h3>
         <p className="text-slate-500">Redirecting to your bookings...</p>
       </div>
-    );
+    )
   }
 
   return (
@@ -151,7 +151,7 @@ export default function BookingForm({
                       </div>
                       <div className="text-right flex-shrink-0">
                         <p className="font-semibold text-slate-800 text-sm">
-                          ${parseFloat(service.price).toFixed(2)}
+                          R{parseFloat(service.price).toFixed(2)}
                         </p>
                         <p className="text-xs text-slate-400">{service.durationMinutes} min</p>
                       </div>
@@ -201,7 +201,7 @@ export default function BookingForm({
           </div>
           <div className="text-right">
             <p className="text-sm text-slate-500">Total</p>
-            <p className="text-2xl font-bold text-slate-800">${totalPrice.toFixed(2)}</p>
+            <p className="text-2xl font-bold text-slate-800">R{totalPrice.toFixed(2)}</p>
           </div>
         </div>
         <button
@@ -223,5 +223,5 @@ export default function BookingForm({
         </button>
       </div>
     </form>
-  );
+  )
 }
