@@ -478,18 +478,3 @@ Software Engineer / Tester
 * GitHub: https://github.com/ghost2468developer
 
 ---
-
-# 📄 License
-
-This project is available for educational and portfolio purposes.
-
-```
-
-### One important thing
-
-I deliberately based this on what is **actually visible in your repository**, rather than inventing features. Your GitHub repo currently contains the Prisma schema, `.env.example`, `src`, and the Next.js/TypeScript configuration, and the database model confirms the vehicle, service, booking, user, and booking-service relationships.
-
-For your portfolio, I'd also add **screenshots + a live Vercel demo link** near the top. That will make the README look substantially more professional to recruiters.
-
-If you want, I can also make you a **much more impressive GitHub README with badges, screenshots layout, feature cards, tech-stack icons, architecture diagram, and a portfolio-style presentation**.
-```
