@@ -468,13 +468,3 @@ Screenshots are highly recommended for portfolio projects because they allow rec
 https://github.com/ghost2468developer/booking-system
 
 ---
-
-# 👨‍💻 Author
-
-**Kenneth Siyabonga Ncube**
-
-Software Engineer / Tester
-
-* GitHub: https://github.com/ghost2468developer
-
----
